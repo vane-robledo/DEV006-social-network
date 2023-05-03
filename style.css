@@ -2,21 +2,15 @@
 
 @media only screen and (max-width: 425px) {
 
-.welcomeBody {
-    background: linear-gradient(#9a0051, black) fixed;
-    height: 100%;
-    margin: 0px;
-}
-
 #logoCinergia {
     width: 70%;
     padding: 15%;
 }
-/*.welcomeSection {
-    background: linear-gradient(#9a0051, black) fixed;
-    height: 100%;
-    margin: 0px;
-}*/
+.welcomeSection {
+    background: linear-gradient(#9a0051, black);
+    height: fit-content;
+    width: fit-content;
+}
 .esloganText {
     margin-top: -15%;
     text-align: center;
