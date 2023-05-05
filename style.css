@@ -8,7 +8,13 @@ body {
     width: 70%;
     padding: 15%;
 }
+.welcomeBody {
+    background: linear-gradient(#9a0051, black);
+    height: fit-content;
+    width: fit-content;
+}
 .welcomeSection {
+    overflow: hidden;
     background: linear-gradient(#9a0051, black);
     height: 760px;
     width: fit-content;
@@ -31,6 +37,7 @@ body {
     padding-left: 10%;
     padding-right: 10%;
     padding-bottom: 10%;
+    margin-bottom: 22%;
 
 }
 .boxText {
