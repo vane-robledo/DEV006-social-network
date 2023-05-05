@@ -17,13 +17,13 @@
 
     .welcomeBody {
         background: linear-gradient(#9a0051, black);
-        height: fit-content;
+        height: 100%;
     }
 
     .welcomeSection {
         background: linear-gradient(#9a0051, black);
-        height: 760px;
-        width: fit-content;
+        height: 100%;
+        width: 100%;
     }
 
     .esloganText {
