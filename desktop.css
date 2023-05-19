@@ -1,38 +1,29 @@
 @import url("https://fonts.googleapis.com/css2?family=Advent+Pro:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 
-@media only screen and (max-width: 425px) {
   html,
   body {
     margin: 0;
-    height: 100%;
-    overflow: hidden;
-    position: fixed;
-    font-family: "Advent Pro", sans-serif; ;
-  }
-
-  .welcomeBody {
-    background: linear-gradient(#9a0051, black);
-    height: 100%;
   }
 
   .welcomeSection {
     background: linear-gradient(#9a0051, black);
-    height: 100%;
-    width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 100vh;
   }
 
-  .logo {
-    width: 70%;
-    padding: 15%;
+  .articleLogo{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .logo { 
+    width: 30%;
   }
 
   .articleLogoTxt {
-    margin-top: -15%;
     text-align: center;
     font-size: x-large;
     color: #d9d9d9;
@@ -41,8 +32,7 @@
 
   .welcomeBox {
     background-color: #ffffff;
-    border-radius: 10px;
-    margin: 8%;
+    border-radius: 10px; 
     font-family: "Advent Pro", sans-serif;
     text-align: center;
     padding: 5%;
@@ -80,60 +70,57 @@
   .articleLogoSignUp {
     width: 35%;
     display: flex;
-    margin-top: 1%;
     margin-left: 81%;
   }
 
   .logoSignUp {
-    width: 50%;
-
+    width: 30%;
   }
+  
   .signUpSection {
     display: flex;
     flex-direction: column;
     background: linear-gradient(#510bab 50%, white 50%);
     font-family: "Advent Pro", sans-serif;
-
+    align-items: center;
+    padding: 5%;
   }
 
 .spanCommunityTxt {
     color: #ffffff;
-    padding: -12%;
     text-align: center;
     margin: 0%;
+    font-size: 100%;
   }
 
   .signUpTxtSpan {
     color: #ffffff;
-    padding: 0%;
     text-align: center;
-    margin-bottom: -10%;
-    font-size: x-large;
+    font-size: 150%;
 }
 
   .registerBox{
     background:white;
-    margin: 7%;
+    margin: 25%, 20%, 25%, 20%;
     box-shadow: 0px 0px 10px 5px rgba(0,0,0,0.3);
     border-radius: 5%;
-    padding: 8%;
-    font-size: 66%;
+    font-size: 80%;
     display: flex;
     flex-direction: column;
     justify-content: center;
 }
 
   .signUpForm {
-    margin: 3%;
-    padding: 1%;
+    margin: 8%;
     font-family: "Advent Pro", sans-serif;
   }
   
   .signUp {
     margin-bottom: 60%;
-    font-size: 150%;
+    font-size: 100%;
     text-align: left;
     font-family: "Advent Pro", sans-serif;
+    width: 80%;
   }
   
   input {
@@ -146,7 +133,7 @@
   input[type="text"],
   input[type="email"],
   input[type="password"]{
-    margin-bottom: 5%;
+    margin-bottom: 3%;
     padding: 2%;
     font-family: "Advent Pro", sans-serif;
   }
@@ -154,11 +141,12 @@
   #readyBtn {
     background: #510BAB;
     color: #FFFFFF;
-    padding: 3.5%;
+    padding: 2%;
     border: 1px solid #000000;
-    width: 60%;
+    width: 30%;
     box-sizing: border-box; /* incluye el ancho del borde y del relleno en el ancho total */
     font-size: 130%;
+    font-weight: bold;
     border-radius: 5px;
     text-align: center;
     display: flex;
@@ -182,13 +170,13 @@
     font-size: 140%;
     color: #510BAB;
     font-weight: bold;
-    margin-top: 0.3%;
     margin-left: 3%;  
   }
 
   .googleLogo{
-    width: 300%;
-    margin-left: -110%;
+    width: 120%;
+    margin-left: -40%;
+    margin-bottom: 10%;
   }
 
   .googleBtn{
@@ -201,7 +189,7 @@
   .googleTxt{
     margin: 0 auto;
     padding-bottom: 5%;
-    font-size: 130%;
+    font-size: 150%;
   }
 
   .signInSection {
@@ -252,69 +240,5 @@
 
   .signInForm {
    margin: 3%;
-   padding: 5%;
-}
-
-.profileNav{
-  background: linear-gradient(#510BAB, #161515);
-  margin-bottom: 20px;
-}
-/* Estilos para el contenedor del feed */
-.feedSection {
-  max-width: 600px;
-  height: 100vh;
-  margin: 0 auto;
-  background-color: #161515;
-  display: flex;
-  flex-direction: column;
-}
-
-/* Estilos para el contenedor de los posts */
-.postsContainer {
-  margin-top: 10px;
-  padding: 30px;
-}
-
-/* Estilos para cada contenedor de post individual */
-.postContainer {
-  background-color: #f4f4f4;
-  border-radius: 8px;
-  padding: 10px;
-  margin-bottom: 10px;
-  border: 2px solid #1959ad; /* Agregamos el borde de separación */
-}
-
-/* Estilos para el contenido de cada post */
-.postContainer div {
-  color: #000000;
-  font-size: 16px;
-}
-
-/* Estilos para el formulario de agregar post */
-.postForm {
-  margin: 20px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-/* Estilos para el botón de agregar post */
-.postBtn {
-  background-color: #7b20af;
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 4px;
-}
-
-/* Estilos para el campo de entrada de texto del post */
-.postInput {
-  width: 100%;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-}
-
-
+   padding: 1%;
 }
