@@ -1,10 +1,11 @@
-import { collection, getDocs } from 'firebase/firestore';
 import {
   signInWithPopup,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   GoogleAuthProvider,
+  onAuthStateChanged,
 } from 'firebase/auth';
+import { collection, getDocs } from 'firebase/firestore';
 import { auth, db } from './firebaseConf.js';
 
 function displaySuccessMessage() {
@@ -13,7 +14,7 @@ function displaySuccessMessage() {
   successMessage.textContent = '¡Registro exitoso!';
 
   // Agrega el elemento al DOM para que se muestre en la página
-  const signUpSection = document.getElementsByClassName('signUpSection');
+  const signUpSection = document.getElementsByClassName('signUpSection')[0];
   signUpSection.appendChild(successMessage);
 
   // Elimina el mensaje de éxito después de unos segundos
@@ -74,14 +75,29 @@ export const googleLogin = (navigateTo) => {
 };
 
 export const colRef = collection(db, 'posts');
-getDocs(colRef)
-  .then((snapshot) => {
-    const posts = [];
-    snapshot.docs.forEach((doc) => {
-      posts.push({ ...doc.data(), id: doc.id });
-    });
-    console.log(posts);
-  })
-  .catch(err => {
-    console.log(err.message);
+
+export function listenToAuthChanges(callback) {
+  onAuthStateChanged(auth, (user) => {
+    if (user) {
+      // Usuario autenticado
+      callback(true);
+    } else {
+      // Usuario no autenticado
+      callback(false);
+    }
   });
+}
+
+export function getPosts() {
+  return getDocs(colRef)
+    .then((snapshot) => {
+      const posts = [];
+      snapshot.docs.forEach((doc) => {
+        posts.push({ ...doc.data(), id: doc.id });
+      });
+      return posts;
+    })
+    .catch((err) => {
+      console.log(err.message);
+    });
+}
