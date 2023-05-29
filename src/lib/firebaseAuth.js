@@ -4,6 +4,8 @@ import {
   signInWithEmailAndPassword,
   GoogleAuthProvider,
   onAuthStateChanged,
+  updateProfile,
+  signOut,
 } from 'firebase/auth';
 import { collection, getDocs } from 'firebase/firestore';
 import { auth, db } from './firebaseConf.js';
@@ -23,13 +25,15 @@ function displaySuccessMessage() {
   }, 3000);
 }
 
-export async function registerUser(email, password) {
+export async function registerUser(name, email, password) {
   try {
-    const userCredential = await createUserWithEmailAndPassword(
-      auth,
-      email,
-      password,
-    );
+    const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+
+    // Agregar el nombre del usuario al perfil
+    await updateProfile(userCredential.user, {
+      displayName: name,
+    });
+
     console.log('registrado', userCredential);
     displaySuccessMessage();
   } catch (error) {
@@ -39,19 +43,16 @@ export async function registerUser(email, password) {
 
 export async function loginUser(email, password) {
   try {
-    const userCredential = await signInWithEmailAndPassword(
-      auth,
-      email,
-      password,
-    );
+    const userCredential = await signInWithEmailAndPassword(auth, email, password);
     console.log('loggeado', userCredential);
   } catch (error) {
     console.log(error);
   }
 }
 
-const provider = new GoogleAuthProvider();
 export const googleLogin = (navigateTo) => {
+  const provider = new GoogleAuthProvider(); // Mueve la declaración de la variable provider aquí
+
   signInWithPopup(auth, provider)
     .then((result) => {
       // This gives you a Google Access Token. You can use it to access the Google API.
@@ -62,7 +63,8 @@ export const googleLogin = (navigateTo) => {
       navigateTo('/feed');
       // IdP data available using getAdditionalUserInfo(result)
       // ...
-    }).catch((error) => {
+    })
+    .catch((error) => {
       // Handle Errors here.
       const errorCode = error.code;
       const errorMessage = error.message;
@@ -88,6 +90,18 @@ export function listenToAuthChanges(callback) {
   });
 }
 
+export function signOutUser() {
+  signOut(auth)
+    .then(() => {
+      // Cierre de sesión exitoso
+      console.log('¡Hasta pronto!');
+    })
+    .catch((error) => {
+      // Ocurrió un error durante el cierre de sesión
+      console.error('Error al cerrar sesión:', error);
+    });
+}
+
 export function getPosts() {
   return getDocs(colRef)
     .then((snapshot) => {
@@ -100,4 +114,17 @@ export function getPosts() {
     .catch((err) => {
       console.log(err.message);
     });
+}
+
+export function getUserProfilePhotoUrl() {
+  const user = auth.currentUser;
+  if (user) {
+    if (user.providerData.some((provider) => provider.providerId === 'google.com')) {
+      // Si el usuario tiene un proveedor de identidad de Google, devuelve la imagen de Google
+      return user.photoURL;
+    }
+    // Si el usuario no tiene un proveedor de identidad de Google, devuelve la imagen predeterminada
+    return './pages/images/profile.jpg'; // Reemplaza la ruta con la ubicación de tu foto de perfil predeterminada
+  }
+  return null;
 }

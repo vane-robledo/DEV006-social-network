@@ -1,6 +1,8 @@
 import { initializeApp } from 'firebase/app';
 import { getAuth } from 'firebase/auth';
-import { getFirestore, collection } from 'firebase/firestore';
+import {
+  getFirestore, collection, doc, updateDoc, increment,
+} from 'firebase/firestore';
 
 export const firebaseConfig = {
   apiKey: 'AIzaSyDoRs5TiCvg-5ih7HQqAYZOdrLEUQEKj40',
@@ -12,10 +14,34 @@ export const firebaseConfig = {
   measurementId: 'G-8SL0NK4KPP',
 };
 
-// export default firebaseConfig;
-
-// Initialize Firebase
+// Inicializar Firebase
 export const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
 export const db = getFirestore(app);
 export const colRef = collection(db, 'posts');
+
+// Función para incrementar los likes de un post
+export const incrementLikes = async (postId) => {
+  const postDoc = doc(db, 'posts', postId);
+  try {
+    await updateDoc(postDoc, {
+      likes: increment(1),
+    });
+    console.log('Likes incrementados para el post:', postId);
+  } catch (error) {
+    console.error('Error al incrementar los likes:', error);
+  }
+};
+
+// Función para incrementar los dislikes de un post
+export const incrementDislikes = async (postId) => {
+  const postDoc = doc(db, 'posts', postId);
+  try {
+    await updateDoc(postDoc, {
+      dislikes: increment(1),
+    });
+    console.log('Dislikes incrementados para el post:', postId);
+  } catch (error) {
+    console.error('Error al incrementar los dislikes:', error);
+  }
+};

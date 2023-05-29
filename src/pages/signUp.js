@@ -34,6 +34,7 @@ const signup = (navigateTo) => {
   const userInput = document.createElement('input');
   userInput.classList.add('userInput');
   userInput.setAttribute('type', 'text');
+  userInput.setAttribute('required', 'required');
   userInput.placeholder = 'Crea un nombre de usuario';
 
   const emailLabel = document.createElement('label');
@@ -43,6 +44,7 @@ const signup = (navigateTo) => {
   emailInput.classList.add('emailInput');
   emailInput.setAttribute('type', 'email');
   emailInput.setAttribute('id', 'userEmail');
+  emailInput.setAttribute('required', 'required');
   emailInput.placeholder = 'Introduce tu correo electrónico';
 
   const passwordLabel = document.createElement('label');
@@ -52,6 +54,7 @@ const signup = (navigateTo) => {
   passwordInput.classList.add('passwordInput');
   passwordInput.setAttribute('type', 'password');
   passwordInput.setAttribute('id', 'userPassword');
+  passwordInput.setAttribute('required', 'required');
   passwordInput.placeholder = 'Crea una contraseña';
 
   const readyBtn = document.createElement('button');
@@ -84,14 +87,40 @@ const signup = (navigateTo) => {
   googleLogo.setAttribute('alt', 'Logo de Google');
 
   readyBtn.addEventListener('click', async () => {
-    const email = emailInput.value;
-    const password = passwordInput.value;
-    try {
-      await registerUser(email, password);
-      navigateTo('/feed');
-      // Aquí puedes redirigir al usuario a la página de inicio
-    } catch (error) {
-      console.error(error);
+    const name = userInput.value.trim();
+    const email = emailInput.value.trim();
+    const password = passwordInput.value.trim();
+    let isValid = true;
+
+    // Validar campos obligatorios
+    if (name === '') {
+      userInput.classList.add('invalid');
+      isValid = false;
+    } else {
+      userInput.classList.remove('invalid');
+    }
+
+    if (email === '') {
+      emailInput.classList.add('invalid');
+      isValid = false;
+    } else {
+      emailInput.classList.remove('invalid');
+    }
+
+    if (password === '') {
+      passwordInput.classList.add('invalid');
+      isValid = false;
+    } else {
+      passwordInput.classList.remove('invalid');
+    }
+
+    if (isValid) {
+      try {
+        await registerUser(name, email, password);
+        navigateTo('/feed');
+      } catch (error) {
+        console.error(error);
+      }
     }
   });
 
@@ -138,4 +167,5 @@ const signup = (navigateTo) => {
 
   return signUpSection;
 };
+
 export default signup;

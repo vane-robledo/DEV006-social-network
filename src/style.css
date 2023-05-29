@@ -7,7 +7,6 @@
     height: 100%;
     overflow: hidden;
     position: fixed;
-    font-family: "Advent Pro", sans-serif; ;
   }
 
   .welcomeBody {
@@ -166,6 +165,10 @@
     margin: 3% auto auto;
   }
 
+  .invalid {
+    border: 2px solid rgb(138, 10, 10);
+  }
+
  .foundAccountDiv {
     display: flex;
     flex-direction: row;
@@ -187,8 +190,8 @@
   }
 
   .googleLogo{
-    width: 300%;
-    margin-left: -110%;
+    width: 500%;
+    margin-left: -220%;
   }
 
   .googleBtn{
@@ -259,12 +262,45 @@
   background: linear-gradient(#510BAB, #161515);
   margin-bottom: 30px;
 }
+
+.userContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Centra horizontalmente el contenido */
+  margin-bottom: 20px;
+}
+
+.userPhotoNav {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  margin-right: 10px;
+  text-align: center;
+}
+
+.userSpan {
+  margin-top: 10px;
+  text-align: center;
+  color: #FFFFFF;
+}
+
+.logoutButton {
+  background-color: transparent;
+  color: #97a70c;
+  border: none;
+  padding-top: 10px;
+  font-size: 14px;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+}
 /* Estilos para el contenedor del feed */
 .feedSection {
   max-width: 600px;
   height: 100vh;
   margin: 0 auto;
-  background-color: #161515;
+  background-color: #161615;
   display: flex;
   flex-direction: column;
 }
@@ -281,7 +317,13 @@
   border-radius: 8px;
   padding: 10px;
   margin-bottom: 10px;
-  border: 2px solid #1959ad; /* Agregamos el borde de separación */
+  border: 3px solid #1959ad; /* Agregamos el borde de separación */
+}
+
+.userPhoto{
+  width: 20%;
+  height: 20%;
+  border-radius: 50%;
 }
 
 /* Estilos para el contenido de cada post */
@@ -312,9 +354,12 @@
 .postInput {
   width: 100%;
   padding: 10px;
-  border: 1px solid #ccc;
+  border: 3px solid #ceb005;
   border-radius: 4px;
 }
 
-
+.postsContainer {
+  overflow-y: auto; /* Habilitar el desplazamiento vertical */
+  max-height: 400px; /* Establecer la altura máxima del contenedor */
 }
+
