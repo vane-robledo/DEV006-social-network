@@ -7,23 +7,7 @@ import {
   updateProfile,
   signOut,
 } from 'firebase/auth';
-import { collection, getDocs } from 'firebase/firestore';
-import { auth, db } from './firebaseConf.js';
-
-function displaySuccessMessage() {
-  // Crea un elemento HTML para mostrar el mensaje de éxito
-  const successMessage = document.createElement('p');
-  successMessage.textContent = '¡Registro exitoso!';
-
-  // Agrega el elemento al DOM para que se muestre en la página
-  const signUpSection = document.getElementsByClassName('signUpSection')[0];
-  signUpSection.appendChild(successMessage);
-
-  // Elimina el mensaje de éxito después de unos segundos
-  setTimeout(() => {
-    signUpSection.removeChild(successMessage);
-  }, 3000);
-}
+import { auth } from './firebaseConf.js';
 
 export async function registerUser(name, email, password) {
   try {
@@ -33,9 +17,6 @@ export async function registerUser(name, email, password) {
     await updateProfile(userCredential.user, {
       displayName: name,
     });
-
-    console.log('registrado', userCredential);
-    displaySuccessMessage();
   } catch (error) {
     console.error(error);
   }
@@ -51,32 +32,31 @@ export async function loginUser(email, password) {
 }
 
 export const googleLogin = (navigateTo) => {
-  const provider = new GoogleAuthProvider(); // Mueve la declaración de la variable provider aquí
+  const provider = new GoogleAuthProvider();
+  const loginData = {
+    token: null,
+    user: null,
+  };
+  // let errorCode = null;
+  // let errorMessage = null;
+  // let email = null;
 
   signInWithPopup(auth, provider)
     .then((result) => {
-      // This gives you a Google Access Token. You can use it to access the Google API.
       const credential = GoogleAuthProvider.credentialFromResult(result);
-      const token = credential.accessToken;
-      // The signed-in user info.
-      const user = result.user;
+      loginData.token = credential.accessToken;
+      loginData.user = result.user;
       navigateTo('/feed');
       // IdP data available using getAdditionalUserInfo(result)
       // ...
     })
     .catch((error) => {
-      // Handle Errors here.
-      const errorCode = error.code;
-      const errorMessage = error.message;
-      // The email of the user's account used.
-      const email = error.customData.email;
-      // The AuthCredential type that was used.
-      const credential = GoogleAuthProvider.credentialFromError(error);
+      console.log(error);
       // ...
     });
 };
 
-export const colRef = collection(db, 'posts');
+// export const colRef = collection(db, 'posts');
 
 export function listenToAuthChanges(callback) {
   onAuthStateChanged(auth, (user) => {
@@ -99,20 +79,6 @@ export function signOutUser() {
     .catch((error) => {
       // Ocurrió un error durante el cierre de sesión
       console.error('Error al cerrar sesión:', error);
-    });
-}
-
-export function getPosts() {
-  return getDocs(colRef)
-    .then((snapshot) => {
-      const posts = [];
-      snapshot.docs.forEach((doc) => {
-        posts.push({ ...doc.data(), id: doc.id });
-      });
-      return posts;
-    })
-    .catch((err) => {
-      console.log(err.message);
     });
 }
 

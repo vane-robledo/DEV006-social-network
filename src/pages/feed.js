@@ -84,16 +84,22 @@ const feed = () => {
     const postDoc = await getDoc(postRef);
     const postData = postDoc.data();
 
-    if (postData.likes && postData.likes[userId]) {
-      return; // El usuario ya ha votado por este post
+    const updatedLikes = { ...postData.likes };
+    const updatedDislikes = { ...postData.dislikes };
+
+    // Si el usuario ya ha dado me gusta, quitar su voto
+    if (updatedLikes[userId]) {
+      delete updatedLikes[userId];
+    } else {
+      // Si el usuario había dado no me gusta previamente, quitar su voto
+      if (updatedDislikes[userId]) {
+        delete updatedDislikes[userId];
+      }
+      // Dar me gusta al post
+      updatedLikes[userId] = true;
     }
 
-    const updatedLikes = {
-      ...postData.likes,
-      [userId]: true,
-    };
-
-    await updateDoc(postRef, { likes: updatedLikes });
+    await updateDoc(postRef, { likes: updatedLikes, dislikes: updatedDislikes });
   };
 
   const dislikePost = async (postId, userId) => {
@@ -101,16 +107,22 @@ const feed = () => {
     const postDoc = await getDoc(postRef);
     const postData = postDoc.data();
 
-    if (postData.dislikes && postData.dislikes[userId]) {
-      return; // El usuario ya ha votado por este post
+    const updatedLikes = { ...postData.likes };
+    const updatedDislikes = { ...postData.dislikes };
+
+    // Si el usuario ya ha dado no me gusta, quitar su voto
+    if (updatedDislikes[userId]) {
+      delete updatedDislikes[userId];
+    } else {
+      // Si el usuario había dado me gusta previamente, quitar su voto
+      if (updatedLikes[userId]) {
+        delete updatedLikes[userId];
+      }
+      // Dar no me gusta al post
+      updatedDislikes[userId] = true;
     }
 
-    const updatedDislikes = {
-      ...postData.dislikes,
-      [userId]: true,
-    };
-
-    await updateDoc(postRef, { dislikes: updatedDislikes });
+    await updateDoc(postRef, { likes: updatedLikes, dislikes: updatedDislikes });
   };
 
   postBtn.addEventListener('click', (e) => {
