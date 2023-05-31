@@ -168,26 +168,38 @@ const feed = () => {
 
       // Crear un elemento para mostrar el post
       const postDiv = document.createElement('div');
+      postDiv.classList.add('postDiv');
       postDiv.textContent = post;
 
       // Crear un elemento para mostrar el nombre de usuario
       const usernameDiv = document.createElement('div');
-      usernameDiv.textContent = postUsername;
+      usernameDiv.classList.add('usernameDiv');
+      usernameDiv.textContent = `Por: ${postUsername}`;
+
+      // Crear un contenedor para los botones de "Me gusta" y "No me gusta"
+      const buttonsContainer = document.createElement('div');
+      buttonsContainer.classList.add('buttonsContainer');
+
+      // Crear botones de "Me gusta" y "No me gusta"
+      const likeBtn = document.createElement('img');
+      likeBtn.src = './pages/images/star.png';
+      likeBtn.alt = 'me gusta';
+      likeBtn.classList.add('likeBtn');
+
+      const dislikeBtn = document.createElement('img');
+      dislikeBtn.src = './pages/images/tomate.png';
+      dislikeBtn.alt = 'no me gusta';
+      dislikeBtn.classList.add('dislikeBtn');
 
       // Crear un elemento para mostrar el contador de "Me gusta"
       const likesCountDiv = document.createElement('div');
-      likesCountDiv.textContent = `Me gusta: ${likesCount}`;
+      likesCountDiv.classList.add('likesCountDiv');
+      likesCountDiv.textContent = `${likesCount}`;
 
       // Crear un elemento para mostrar el contador de "No me gusta"
       const dislikesCountDiv = document.createElement('div');
-      dislikesCountDiv.textContent = `No me gusta: ${dislikesCount}`;
-
-      // Crear botones de "Me gusta" y "No me gusta"
-      const likeBtn = document.createElement('button');
-      likeBtn.textContent = 'Me gusta';
-
-      const dislikeBtn = document.createElement('button');
-      dislikeBtn.textContent = 'No me gusta';
+      dislikesCountDiv.classList.add('dislikesCountDiv');
+      dislikesCountDiv.textContent = `${dislikesCount}`;
 
       // Agregar eventos de clic a los botones de "Me gusta" y "No me gusta"
       likeBtn.addEventListener('click', () => {
@@ -198,21 +210,26 @@ const feed = () => {
         dislikePost(postId, auth.currentUser.uid);
       });
 
+      // Agregar los botones y los contadores al contenedor de los botones
+      buttonsContainer.appendChild(likeBtn);
+      buttonsContainer.appendChild(likesCountDiv);
+      buttonsContainer.appendChild(dislikeBtn);
+      buttonsContainer.appendChild(dislikesCountDiv);
+
       // Agregar los elementos al contenedor del post
       postContainer.appendChild(userPhotoElement);
       postContainer.appendChild(postDiv);
       postContainer.appendChild(usernameDiv);
-      postContainer.appendChild(likesCountDiv);
-      postContainer.appendChild(dislikesCountDiv);
-      postContainer.appendChild(likeBtn);
-      postContainer.appendChild(dislikeBtn);
+      postContainer.appendChild(buttonsContainer);
 
       // Agregar botones de "Editar" y "Eliminar" si el post pertenece al usuario actual
       if (isCurrentUserPost) {
         const editBtn = document.createElement('button');
+        editBtn.classList.add('editBtn');
         editBtn.textContent = 'Editar';
 
         const deleteBtn = document.createElement('button');
+        deleteBtn.classList.add('deleteBtn');
         deleteBtn.textContent = 'Eliminar';
 
         editBtn.addEventListener('click', () => {

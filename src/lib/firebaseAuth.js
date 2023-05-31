@@ -37,9 +37,6 @@ export const googleLogin = (navigateTo) => {
     token: null,
     user: null,
   };
-  // let errorCode = null;
-  // let errorMessage = null;
-  // let email = null;
 
   signInWithPopup(auth, provider)
     .then((result) => {
@@ -47,16 +44,11 @@ export const googleLogin = (navigateTo) => {
       loginData.token = credential.accessToken;
       loginData.user = result.user;
       navigateTo('/feed');
-      // IdP data available using getAdditionalUserInfo(result)
-      // ...
     })
     .catch((error) => {
       console.log(error);
-      // ...
     });
 };
-
-// export const colRef = collection(db, 'posts');
 
 export function listenToAuthChanges(callback) {
   onAuthStateChanged(auth, (user) => {
@@ -87,7 +79,7 @@ export function getUserProfilePhotoUrl() {
   if (user) {
     if (user.providerData.some((provider) => provider.providerId === 'google.com')) {
       // Si el usuario tiene un proveedor de identidad de Google, devuelve la imagen de Google
-      return user.photoURL;
+      return user.photoURL || './pages/images/profile.jpg';
     }
     // Si el usuario no tiene un proveedor de identidad de Google, devuelve la imagen predeterminada
     return './pages/images/profile.jpg'; // Reemplaza la ruta con la ubicación de tu foto de perfil predeterminada
