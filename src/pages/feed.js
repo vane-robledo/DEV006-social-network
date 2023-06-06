@@ -69,7 +69,7 @@ const feed = () => {
   const postInput = document.createElement('input');
   postInput.classList.add('postInput');
   postInput.setAttribute('type', 'text');
-  postInput.setAttribute('placeholder', '¿Qué quieres compartir hoy?');
+  postInput.setAttribute('placeholder', '¿De cuál peli hablarás hoy?');
 
   const postBtn = document.createElement('button');
   postBtn.classList.add('postBtn');

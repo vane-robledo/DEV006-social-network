@@ -1,12 +1,9 @@
 @import url("https://fonts.googleapis.com/css2?family=Advent+Pro:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 
-@media only screen and (max-width: 425px) {
+@media only screen and (max-width: 699px) {
   html,
   body {
     margin: 0;
-    height: 100%;
-    overflow: hidden;
-    position: fixed;
   }
 
   .welcomeBody {
@@ -75,7 +72,7 @@
     font-size: larger;
     padding: 4%;
   }
-
+/* Pantalla de registrarse */
   .articleLogoSignUp {
     width: 35%;
     display: flex;
@@ -85,6 +82,7 @@
 
   .logoSignUp {
     width: 50%;
+    margin-top: 5%;
 
   }
   .signUpSection {
@@ -95,7 +93,7 @@
 
   }
 
-.spanCommunityTxt {
+  .spanCommunityTxt {
     color: #ffffff;
     padding: -12%;
     text-align: center;
@@ -163,6 +161,22 @@
     display: flex;
     justify-content: center;
     margin: 3% auto auto;
+  }
+
+  #errorName {
+    font-size: 130%;
+    color: #F70202;
+    font-weight: 550;
+  }
+  #errorEmail {
+    font-size: 130%;
+    color: #F70202;
+    font-weight: 550;
+  }
+  #errorPassword {
+    font-size: 130%;
+    color: #F70202;
+    font-weight: 550;
   }
 
   .invalid {
@@ -294,7 +308,6 @@
   text-decoration: underline;
 }
 
-}
 /* Estilos para el contenedor del feed */
 .feedSection {
   max-width: 600px;
@@ -303,7 +316,8 @@
   background-color: #161615;
   display: flex;
   flex-direction: column;
-}
+  }
+
 
 /* Estilos para el contenedor de los posts */
 .postsContainer {
@@ -311,6 +325,9 @@
   padding: 30px;
   overflow-y: auto; /* Habilitar el desplazamiento vertical */
   max-height: 400px; /* Establecer la altura máxima del contenedor */
+  background-image: url(../src/pages/images/palomitas.png);
+  background-repeat: repeat;
+  background-position: center;
 }
 
 /* Estilos para cada contenedor de post individual */
@@ -320,6 +337,7 @@
   padding: 10px;
   margin-bottom: 10px;
   border: 3px solid #1959ad; /* Agregamos el borde de separación */
+  box-shadow: 5px 2px 4px rgb(107, 5, 133);
 }
 
 .userPhoto {
@@ -331,7 +349,7 @@
 /* Estilos para el contenido de cada post */
 
 .postsContainer .postContainer .postDiv {
-  font-size: 18px;
+  font-size: 20px;
   color: #000000;
 }
 
@@ -357,8 +375,23 @@
 .postInput {
   width: 100%;
   padding: 10px;
-  border: 3px solid #ceb005;
-  border-radius: 4px;
+  border: none;
+  border-bottom: 3px solid #ceb005;
+  background-color: transparent;
+  font-size: 25px;
+  color: #ffffff;
+  outline: none;
+  text-align: center;
+}
+
+.postInput::placeholder {
+  color: #ffffff;
+  font-size: 15px;
+  opacity: 0.5;
+}
+
+.postInput:focus {
+  border-bottom: 3px solid #ceb005;
 }
 
 /* Estilos para el nombre de usuario */
@@ -438,4 +471,6 @@
 .editBtn:active,
 .deleteBtn:active {
   transform: translateY(1px);
+}
+
 }
