@@ -34,6 +34,7 @@ export async function loginUser(email, password) {
     throw error;
   }
 }
+
 export const googleLogin = (navigateTo) => {
   const provider = new GoogleAuthProvider();
   const loginData = {
@@ -54,6 +55,7 @@ export const googleLogin = (navigateTo) => {
       // ...
     });
 };
+
 // export const colRef = collection(db, 'posts');
 export function listenToAuthChanges(callback) {
   onAuthStateChanged(auth, (user) => {
@@ -66,6 +68,7 @@ export function listenToAuthChanges(callback) {
     }
   });
 }
+
 export function signOutUser() {
   signOut(auth)
     .then(() => {
@@ -77,6 +80,7 @@ export function signOutUser() {
       console.error('Error al cerrar sesión:', error);
     });
 }
+
 export function getUserProfilePhotoUrl() {
   const user = auth.currentUser;
   if (user) {
