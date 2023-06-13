@@ -21,8 +21,8 @@ Los primeros diseños de baja fidelidad incluian elementos básicos para poder c
 
 Los prototipos de alta fidelidad incluian más elementos, los colores y el logo que creamos.
 
-![image](alta,inicio.png)
-![image](feed inicio.png)
+![image](alta,inicio.PNG)
+![image](feed inicio.PNG)
 
 # Historias de Usuario
 
