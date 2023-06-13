@@ -1,13 +1,9 @@
 @import url("https://fonts.googleapis.com/css2?family=Advent+Pro:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 
-@media only screen and (max-width: 425px) {
+@media only screen and (max-width: 699px) {
   html,
   body {
     margin: 0;
-    height: 100%;
-    overflow: hidden;
-    position: fixed;
-    font-family: "Advent Pro", sans-serif; ;
   }
 
   .welcomeBody {
@@ -76,7 +72,7 @@
     font-size: larger;
     padding: 4%;
   }
-
+/* Pantalla de registrarse */
   .articleLogoSignUp {
     width: 35%;
     display: flex;
@@ -86,6 +82,7 @@
 
   .logoSignUp {
     width: 50%;
+    margin-top: 5%;
 
   }
   .signUpSection {
@@ -96,7 +93,7 @@
 
   }
 
-.spanCommunityTxt {
+  .spanCommunityTxt {
     color: #ffffff;
     padding: -12%;
     text-align: center;
@@ -166,6 +163,26 @@
     margin: 3% auto auto;
   }
 
+  #errorName {
+    font-size: 130%;
+    color: #F70202;
+    font-weight: 550;
+  }
+  #errorEmail {
+    font-size: 130%;
+    color: #F70202;
+    font-weight: 550;
+  }
+  #errorPassword {
+    font-size: 130%;
+    color: #F70202;
+    font-weight: 550;
+  }
+
+  .invalid {
+    border: 2px solid rgb(138, 10, 10);
+  }
+
  .foundAccountDiv {
     display: flex;
     flex-direction: row;
@@ -187,8 +204,8 @@
   }
 
   .googleLogo{
-    width: 300%;
-    margin-left: -110%;
+    width: 500%;
+    margin-left: -220%;
   }
 
   .googleBtn{
@@ -257,22 +274,60 @@
 
 .profileNav{
   background: linear-gradient(#510BAB, #161515);
+  margin-bottom: 30px;
+}
+
+.userContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Centra horizontalmente el contenido */
   margin-bottom: 20px;
 }
+
+.userPhotoNav {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  margin-right: 10px;
+  text-align: center;
+}
+
+.userSpan {
+  margin-top: 10px;
+  text-align: center;
+  color: #FFFFFF;
+}
+
+.logoutButton {
+  background-color: transparent;
+  color: #97a70c;
+  border: none;
+  padding-top: 10px;
+  font-size: 14px;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
 /* Estilos para el contenedor del feed */
 .feedSection {
   max-width: 600px;
   height: 100vh;
   margin: 0 auto;
-  background-color: #161515;
+  background-color: #161615;
   display: flex;
   flex-direction: column;
-}
+  }
+
 
 /* Estilos para el contenedor de los posts */
 .postsContainer {
   margin-top: 10px;
   padding: 30px;
+  overflow-y: auto; /* Habilitar el desplazamiento vertical */
+  max-height: 400px; /* Establecer la altura máxima del contenedor */
+  background-image: url(../src/pages/images/palomitas.png);
+  background-repeat: repeat;
+  background-position: center;
 }
 
 /* Estilos para cada contenedor de post individual */
@@ -281,13 +336,21 @@
   border-radius: 8px;
   padding: 10px;
   margin-bottom: 10px;
-  border: 2px solid #1959ad; /* Agregamos el borde de separación */
+  border: 3px solid #1959ad; /* Agregamos el borde de separación */
+  box-shadow: 5px 2px 4px rgb(107, 5, 133);
+}
+
+.userPhoto {
+  width: 20%;
+  height: 20%;
+  border-radius: 50%;
 }
 
 /* Estilos para el contenido de cada post */
-.postContainer div {
+
+.postsContainer .postContainer .postDiv {
+  font-size: 20px;
   color: #000000;
-  font-size: 16px;
 }
 
 /* Estilos para el formulario de agregar post */
@@ -312,9 +375,102 @@
 .postInput {
   width: 100%;
   padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
+  border: none;
+  border-bottom: 3px solid #ceb005;
+  background-color: transparent;
+  font-size: 25px;
+  color: #ffffff;
+  outline: none;
+  text-align: center;
 }
 
+.postInput::placeholder {
+  color: #ffffff;
+  font-size: 15px;
+  opacity: 0.5;
+}
+
+.postInput:focus {
+  border-bottom: 3px solid #ceb005;
+}
+
+/* Estilos para el nombre de usuario */
+.usernameDiv {
+  margin-bottom: 5px;
+  font-size: 14px;
+  font-style: italic;
+}
+
+/* Estilos para el texto del post */
+.postDiv {
+  margin-bottom: 5px;
+  background-color: #f5f5f5;
+  font-size: 16px;
+}
+
+/* Estilos para el contenedor de los botones */
+.buttonsContainer {
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+/* Estilos para los botones de "Me gusta" y "No me gusta" */
+.likeBtn,
+.dislikeBtn {
+  width: 30px;
+  height: 30px;
+  margin-right: 5px;
+}
+
+.dislikeBtn {
+  width: 25px;
+  height: 25px;
+  margin-right: 5px;
+}
+
+/* Estilos para los contadores de "Me gusta" y "No me gusta" */
+.likesCountDiv,
+.dislikesCountDiv {
+  margin-right: 10px;
+}
+
+.editBtn {
+  background-color: #444444;
+  color: #ffffff;
+}
+
+.deleteBtn {
+  background-color: #888888;
+  color: #ffffff;
+}
+
+.editBtn,
+.deleteBtn {
+  border: none;
+  border-radius: 4px;
+  padding: 8px 16px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  margin-right: 8px;
+}
+
+.editBtn:hover,
+.deleteBtn:hover {
+  background-color: #333333;
+}
+
+.editBtn:focus,
+.deleteBtn:focus {
+  outline: none;
+}
+
+.editBtn:active,
+.deleteBtn:active {
+  transform: translateY(1px);
+}
 
 }
