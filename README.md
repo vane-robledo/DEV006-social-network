@@ -16,13 +16,10 @@ Esta red social se creó pensando en personas que les guste el cine pero no se s
 Se diseño el prototipo en figma y se escogió una paleta de colores que no fuera tan formal ni tan informal, más relajada para que reflejara el proposito del sitio.
 
 Los primeros diseños de baja fidelidad incluian elementos básicos para poder comenzar a desarrollar el proyecto. Primero se realizó el de la pagina principal con el inicio de sesión o registro y luego el del muro donde se verán los posts.
-![image](image (4).png)
-![image](image (5).png)
 
 Los prototipos de alta fidelidad incluian más elementos, los colores y el logo que creamos.
 
-![image](alta,inicio.PNG)
-![image](feed inicio.PNG)
+[Prototipos de alta y baja fidelidad](https://www.figma.com/file/UweL3fQFBge8phfYFujafz/Prototipo-Social-Network?type=design&node-id=0-1&t=UNRcVwAOyQEiyoaZ-0)
 
 # Historias de Usuario
 
